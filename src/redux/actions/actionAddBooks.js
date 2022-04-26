@@ -1,4 +1,4 @@
-import { ADD_BOOK, DELETE_BOOK } from "../constants";
+import { ADD_BOOK, DELETE_ALL_BOOKS, DELETE_BOOK } from "../constants";
 
 /**
  * Action pour ajouter un livre
@@ -14,4 +14,8 @@ export const deleteBook = (bookId) => {
   return { type: DELETE_BOOK, payload: bookId }
 };
 
-export default { addBook, deleteBook }
+export const deleteAllBooks = () => {
+  return { type: DELETE_ALL_BOOKS }
+}
+
+export default { addBook, deleteBook, deleteAllBooks }
