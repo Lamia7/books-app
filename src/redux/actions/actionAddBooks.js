@@ -1,4 +1,4 @@
-import { ADD_BOOKS } from "../constants";
+import { ADD_BOOK } from "../constants";
 
 /**
  * Action pour ajouter un livre
@@ -7,7 +7,7 @@ import { ADD_BOOKS } from "../constants";
  */
 const addBook = (data) => {
   // retourne action
-  return { type: ADD_BOOKS, payload: data /* Object */ };
+  return { type: ADD_BOOK, payload: data /* Object */ };
 };
 
 export default addBook;

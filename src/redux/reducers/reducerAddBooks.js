@@ -1,5 +1,5 @@
 import { v4 as uuiv4 } from "uuid";
-import { ADD_BOOKS } from "../constants";
+import { ADD_BOOK } from "../constants";
 
 const initialState = {
   books: [],
@@ -23,7 +23,7 @@ const reducerAddBooks = (
   }
 
   switch (action.type) {
-    case ADD_BOOKS:
+    case ADD_BOOK:
       state = [...state, helperAddData(action)];
       // enregistrer une copie dans le localStorage au cas où on raffraichit la page
       localStorage.setItem("booksData", JSON.stringify(state));
