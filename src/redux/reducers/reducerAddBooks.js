@@ -1,5 +1,5 @@
 import { v4 as uuiv4 } from "uuid";
-import { ADD_BOOK } from "../constants";
+import { ADD_BOOK, DELETE_BOOK } from "../constants";
 
 const initialState = {
   books: [],
@@ -26,6 +26,10 @@ const reducerAddBooks = (
     case ADD_BOOK:
       state = [...state, helperAddData(action)];
       // enregistrer une copie dans le localStorage au cas où on raffraichit la page
+      localStorage.setItem("booksData", JSON.stringify(state));
+      return state;
+    case DELETE_BOOK:
+      state = state.filter((element) => element.id !== action.payload)
       localStorage.setItem("booksData", JSON.stringify(state));
       return state;
     default:

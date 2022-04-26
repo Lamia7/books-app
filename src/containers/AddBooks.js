@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import FlipMove from 'react-flip-move'
-import addBook from "../redux/actions/actionAddBooks";
+import { addBook, deleteBook } from "../redux/actions/actionAddBooks";
 
 
-const AddBooks = ({ libraryData, addBook }) => {
+const AddBooks = ({ libraryData, addBook, deleteBook }) => {
   console.log(libraryData);
 
 
@@ -32,7 +32,10 @@ const AddBooks = ({ libraryData, addBook }) => {
             <li key={data.id} className="list-group-item list-group-item-light d-flex justify-content-between">
                 <span><strong>Titre: </strong>{data.title}</span>
             <span><strong>Auteur: </strong>{data.author}</span>
-            <span className="btn btn-danger">X</span>
+            <span 
+              className="btn btn-danger"
+              onClick={() => deleteBook(data.id)}
+            >X</span>
           </li>
           )
         })
@@ -114,10 +117,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     // si j'invoke ce props, je vais dispatcher l'action addBook()
-    addBook: (param) => {
-      console.log(`mapDispatchToProps: ${param}`);
-      dispatch(addBook(param));
-    },
+    addBook: (param) => dispatch(addBook(param)),
+    deleteBook: (bookId) => dispatch(deleteBook(bookId))
   };
 };
 
