@@ -2,9 +2,16 @@
  * Rechercher livres sur API Google
  */
 
-import React from 'react'
+import React, { useState } from 'react'
 
 const SearchBooks = () => {
+    const [searchSubject, setSearchSubject] = useState('')
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(searchSubject)
+    }
+
   return (
     <main role="main">
     <div className="jumbotrom jumbotrom-fluid">
@@ -14,13 +21,16 @@ const SearchBooks = () => {
 
         <form
           className="form-inline d-flex justify-content-center"
+          onSubmit={handleSubmit}
         >
           <div className="form-group">
             <input
-              type="text"
-              className="form-control"
-              placeholder="Que recherchez-vous ?"
-              required
+                value={searchSubject}
+                type="text"
+                className="form-control"
+                placeholder="Que recherchez-vous ?"
+                required
+                onChange={(e) => setSearchSubject(e.target.value)}
             />
           </div>
 
