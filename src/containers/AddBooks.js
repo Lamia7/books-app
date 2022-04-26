@@ -23,6 +23,16 @@ const AddBooks = ({ libraryData, addBook }) => {
     setNewData(initialState);
   };
 
+  const displayData = libraryData.length > 0 ? libraryData.map((data) => {
+      return (
+        <li key={data.id} className="list-group-item list-group-item-light d-flex justify-content-between">
+            <span><strong>Titre: </strong>{data.title}</span>
+        <span><strong>Auteur: </strong>{data.author}</span>
+        <span className="btn btn-danger">X</span>
+      </li>
+      )
+  }) : <p className="text-center">Aucune donnée à afficher</p>
+
   return (
     <main role="main">
       <div className="jumbotrom jumbotrom-fluid">
@@ -71,9 +81,7 @@ const AddBooks = ({ libraryData, addBook }) => {
         <div className="row">
           <div className="col-md-12">
             <ul className="list-group">
-              <li className="list-group-item list-group-item-light d-flex justify-content-between">
-                livres enregistrés ici
-              </li>
+              {displayData}
             </ul>
             <div className="d-flex justify-content-center">
               <button className="btn btn-danger mt-4 mb-5">
