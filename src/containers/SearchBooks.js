@@ -3,13 +3,24 @@
  */
 
 import React, { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { fetchBooks } from '../redux/actions/fetchBooks'
 
 const SearchBooks = () => {
     const [searchSubject, setSearchSubject] = useState('')
 
+    // Sélectionner la propriété que l'on veut depuis le state du store, ici propriété: 'search'
+    const state = useSelector(state => state.search)
+    // Via ce dispatch on peut dispatcher des actions 
+    const dispatch = useDispatch()
+
+    console.log(state)
+
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(searchSubject)
+        // dispatcher de l'action qui appelle l'API
+        dispatch(fetchBooks(searchSubject))
     }
 
   return (
