@@ -56,11 +56,12 @@ export const fetchBooks = (title) => {
         // Si tout est ok, dispatch de l'action fetchBooksSuccess
         .then((res) => {
             console.log(res)
-            dispatch(fetchBooksSuccess(res.data.items))
+            const booksItemsArray = res.data.items
+            dispatch(fetchBooksSuccess(booksItemsArray))
         })
         // Sinon, dispatch de l'action qui gère l'erreur fetchBooksError
-        .catch((err) => {
-            dispatch(fetchBooksError())
+        .catch((error) => {
+            dispatch(fetchBooksError(error.message))
         })
     }
 }

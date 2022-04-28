@@ -126,4 +126,5 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
+// Le rendre plus puissant : HOC (Higher Order Component)
 export default connect(mapStateToProps, mapDispatchToProps)(AddBooks);
