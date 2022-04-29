@@ -4,7 +4,13 @@
 
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import { fetchBooks } from '../redux/actions/fetchBooks'
+import { addBook } from '../redux/actions/actionAddBooks'
+
+// Configurer le toast
+toast.configure()
 
 const SearchBooks = () => {
     const [searchSubject, setSearchSubject] = useState('')
@@ -21,6 +27,20 @@ const SearchBooks = () => {
         console.log(searchSubject)
         // dispatcher de l'action qui appelle l'API
         dispatch(fetchBooks(searchSubject))
+    }
+
+    /**
+     * Enregistre un livre dans la liste (page accueil)
+     * @param {string} bookTitle 
+     * @param {string} bookAuthors 
+     */
+    const saveBook = (bookTitle, bookAuthors) => {
+      const bookToSave = {
+        title: bookTitle,
+        author: bookAuthors
+      }
+      dispatch(addBook(bookToSave))
+      toast.info('Livre enregistré avec succès', { position: toast.POSITION.BOTTOM_RIGHT })
     }
 
     const dispayFetchedBooks = state.isLoading ? (
@@ -75,7 +95,10 @@ const SearchBooks = () => {
                     className="btn btn-outline-secondary"
                     href={data.volumeInfo.previewLink}
                   >Plus d'infos</a>
-                  <button className="btn btn-outline-secondary ml-3">Enregistrer</button>
+                  <button
+                    className="btn btn-outline-secondary ml-3"
+                    onClick={() => saveBook(data.volumeInfo.title, data.volumeInfo.authors)}
+                  >Enregistrer</button>
                 </div>
             </div>
         </div>
